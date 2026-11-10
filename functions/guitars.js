@@ -30,7 +30,8 @@ export const handler = async (event) => {
 
     if (httpMethod === 'DELETE') {
         
-        const id = JSON.parse(body.id);
+        const bodi = JSON.parse(body);
+        const id = bodi.id
         
         const guitarIndex = guitars.findIndex((guitar) => guitar.id === id);
         const deletedGuitar = guitars.splice(guitarIndex, 1)
