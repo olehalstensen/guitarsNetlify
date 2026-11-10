@@ -1,7 +1,7 @@
-const { v4: uuidv4 } = require('uuid');
-const guitars = require('../guitarData.js');
+import { v4 as uuidv4 } from 'uuid';
+import guitars, { push } from '../guitarData.js';
 
-exports.handler = async (event) => {
+export async function handler(event) {
     const { httpMethod, body } = event;
 
     if (httpMethod === 'GET') {
@@ -15,7 +15,7 @@ exports.handler = async (event) => {
     if (httpMethod === 'POST') {
         const newGuitar = JSON.parse(body);
         newGuitar.id = uuidv4();
-        guitars.push(newGuitar);
+        push(newGuitar);
 
         return {
             statusCode: 201,
@@ -28,4 +28,4 @@ exports.handler = async (event) => {
         statusCode: 405,
         body: JSON.stringify({ error: 'Method Not Allowed' })
     };
-};
+}
