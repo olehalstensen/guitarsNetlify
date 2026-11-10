@@ -29,7 +29,7 @@ export const handler = async (event) => {
     }
 
     if (httpMethod === 'DELETE') {
-        const { id } = JSON.parse(body);
+        const { id } = body;
         
         const guitarIndex = guitars.findIndex((guitar) => guitar.id === id);
         guitars.slice(guitarIndex, (guitarIndex + 1))
@@ -48,3 +48,5 @@ export const handler = async (event) => {
         body: JSON.stringify({ error: 'Method Not Allowed' })
     };
 };
+
+//49091710-ad1c-4584-91d2-9c6384700dff
