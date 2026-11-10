@@ -29,17 +29,17 @@ export const handler = async (event) => {
     }
 
     if (httpMethod === 'DELETE') {
-        const { id } = body;
+        const { id } = JSON.parse(body);
         
-        const guitarIndex = guitars.findIndex((guitar) => guitar.id === id);
-        guitars.slice(guitarIndex, (guitarIndex + 1))
+        const guitarIndex = guitars.findIndex((guitar) => guitar.id == id);
+        const [deletedGuitar] = guitars.splice(guitarIndex, 1)
 
         return {
             statusCode: 201,
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(newGuitar)
+            body: JSON.stringify(deletedGuitar)
         };
     }
 
