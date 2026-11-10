@@ -1,13 +1,15 @@
 import { v4 as uuidv4 } from 'uuid';
 import guitars from '../guitarData.js';
 
-exports.handler = async (event) => {
+export const handler = async (event) => {
     const { httpMethod, body } = event;
 
     if (httpMethod === 'GET') {
-        // Get guitars logic
         return {
             statusCode: 200,
+            headers: {
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify(guitars)
         };
     }
@@ -19,11 +21,13 @@ exports.handler = async (event) => {
 
         return {
             statusCode: 201,
+            headers: {
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify(newGuitar)
         };
     }
 
-    // Handle unsupported methods
     return {
         statusCode: 405,
         body: JSON.stringify({ error: 'Method Not Allowed' })
