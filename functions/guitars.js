@@ -1,4 +1,4 @@
-import { v4 as uuidv4 } from 'uuid';
+import { randomUUID } from 'node:crypto';
 import guitars from '../guitarData.js';
 
 export const handler = async (event) => {
@@ -16,7 +16,7 @@ export const handler = async (event) => {
 
     if (httpMethod === 'POST') {
         const newGuitar = JSON.parse(body);
-        newGuitar.id = uuidv4();
+        newGuitar.id = randomUUID();
         guitars.push(newGuitar);
 
         return {
