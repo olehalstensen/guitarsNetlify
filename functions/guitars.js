@@ -1,7 +1,6 @@
 import { randomUUID } from 'node:crypto';
-import * as guitars from '../guitarData.js';
-
-console.log(guitars);
+import guitarsData from '../guitarData.js';
+const guitars = guitarsData.default;
 
 export const handler = async (event) => {
     const { httpMethod, body } = event;
@@ -32,8 +31,7 @@ export const handler = async (event) => {
 
     if (httpMethod === 'DELETE') {
         
-        const bodi = JSON.parse(body);
-        const id = bodi.id
+        const { id } = JSON.parse(body);
         const guitarIndex = guitars.findIndex((guitar) => guitar.id === id);
         const deletedGuitar = guitars.splice(guitarIndex, 1)
 
