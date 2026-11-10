@@ -1,4 +1,4 @@
-const { v4: uuidv4 } = require('uuid');
+import { v4 as uuidv4 } from 'uuid';
 
 const guitars = [
     { id: uuidv4(), brand: "Fender", model: "Stratocaster", color: "Sunburst", year: 1962, price: 2500 },
@@ -6,4 +6,4 @@ const guitars = [
     { id: uuidv4(), brand: "PRS", model: "Custom 24", color: "Charcoal Burst", year: 2020, price: 3500 }
 ];
 
-module.exports = guitars;
+export default guitars;

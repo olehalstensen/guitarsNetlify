@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
-import guitars, { push } from '../guitarData.js';
+import guitars from '../guitarData.js';
 
-export async function handler(event) {
+exports.handler = async (event) => {
     const { httpMethod, body } = event;
 
     if (httpMethod === 'GET') {
@@ -15,7 +15,7 @@ export async function handler(event) {
     if (httpMethod === 'POST') {
         const newGuitar = JSON.parse(body);
         newGuitar.id = uuidv4();
-        push(newGuitar);
+        guitars.push(newGuitar);
 
         return {
             statusCode: 201,
@@ -28,4 +28,4 @@ export async function handler(event) {
         statusCode: 405,
         body: JSON.stringify({ error: 'Method Not Allowed' })
     };
-}
+};
